@@ -1,0 +1,1 @@
+RUN php /bin/composer.phar create-project symfony/skeleton:"7.3.x" ./
