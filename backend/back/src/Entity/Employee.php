@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EmployeeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: EmployeeRepository::class)]
 class Employee
@@ -11,24 +12,31 @@ class Employee
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["getEmployee"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(["getEmployee"])]
     private ?string $name = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(["getEmployee"])]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 20)]
+    #[Groups(["getEmployee"])]
     private ?string $phone = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(["getEmployee"])]
     private ?string $email = null;
 
     #[ORM\ManyToOne(inversedBy: 'employees')]
+    #[Groups(["getEmployee"])]
     private ?Service $service = null;
 
     #[ORM\ManyToOne(inversedBy: 'employees')]
+    #[Groups(["getEmployee"])]
     private ?Site $site = null;
 
     public function getId(): ?int

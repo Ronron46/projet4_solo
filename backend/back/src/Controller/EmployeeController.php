@@ -28,7 +28,7 @@ final class EmployeeController extends AbstractController
     public function getEmployees(EmployeeRepository $employeeRepository, SerializerInterface $serializer)
     {
         $employeeList = $employeeRepository->findAll();
-        $jsonEmployeeList = $serializer->serialize($employeeList, 'json');
+        $jsonEmployeeList = $serializer->serialize($employeeList, 'json', ['groups' => 'getEmployee']);
         return new JsonResponse($jsonEmployeeList, Response::HTTP_OK, [], true);
     }
     #[Route('api/employee/{id}', name: 'edit_employee', methods:['PUT'])]
