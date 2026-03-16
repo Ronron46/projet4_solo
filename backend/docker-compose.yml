@@ -1,0 +1,50 @@
+---
+
+services:
+    phpapache:
+        build:
+            context: .
+        volumes:
+            - $PWD/back:/var/www/html
+        ports:
+            - 8000:80
+        container_name: phpapache
+        depends_on:
+            db:
+                condition: service_healthy
+        networks:
+            - lamp
+    
+    db:
+        image: mariadb
+        restart: always
+        environment:
+            MARIADB_DATABASE: annuaire
+            MARIADB_ROOT_PASSWORD: password
+            MARIADB_USER: ronron
+            MARIADB_PASSWORD: password
+        volumes:
+            - DB-Data:/var/lib/mysql
+        networks:
+            lamp:
+                ipv4_address: 172.18.0.4
+        container_name: mariadb
+        healthcheck:
+            test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+            start_period: 10s
+            interval: 10s
+            timeout: 5s
+            retries: 3
+
+volumes:
+    DB-Data:
+        name: DB-Data
+        
+networks:
+    lamp:
+        name: lamp
+        ipam:
+            config:
+                - subnet: "172.18.0.0/24"
+
+...
