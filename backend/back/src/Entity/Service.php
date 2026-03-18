@@ -14,11 +14,11 @@ class Service
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(["getEmployee"])]
+    #[Groups(["getEmployee", "getService"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(["getEmployee"])]
+    #[Groups(["getEmployee", "getService"])]
     private ?string $name = null;
 
     /**

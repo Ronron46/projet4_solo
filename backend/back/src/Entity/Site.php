@@ -14,11 +14,11 @@ class Site
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(["getEmployee"])]
+    #[Groups(["getEmployee", "getSite"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(["getEmployee"])]
+    #[Groups(["getEmployee", "getSite"])]
     private ?string $name = null;
 
     #[ORM\Column(length: 50)]
