@@ -50,6 +50,7 @@ let employees = [
 </script>
 <template>
     <h1>Liste des employées</h1>
+    <a href="#/siteList"> Liste des sites</a>
     <table>
         <thead>
             <tr>
@@ -59,7 +60,7 @@ let employees = [
         </thead>
         <tbody v-for="(employee) in employees">
                 <tr>
-                    <td><a :href="'#/detail/' + employee.id" > Détail</a></td>
+                    <td><a :href="'#/detail/' + employee.id" >Modifier</a></td>
                     <td>{{ employee.name }}</td>
                     <td>{{ employee.firstName }}</td>
                     <td>{{ employee.phone }}</td>
