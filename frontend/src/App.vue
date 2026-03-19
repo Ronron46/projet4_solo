@@ -17,7 +17,6 @@ window.addEventListener('hashchange', () => {
 
 const currentView = computed(() => {
   let uri = currentPath.value.split("/");
-  console.log(uri)
   if (uri.length == 1){
     return routes["/"]
   }
