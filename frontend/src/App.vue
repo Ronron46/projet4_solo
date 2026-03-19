@@ -3,12 +3,14 @@ import HelloWorld from './components/HelloWorld.vue'
 import EmployeeList from './components/EmployeeList.vue';
 import EmployeeEdit from './components/EmployeeEdit.vue';
 import SiteList from './components/SiteList.vue';
-import { ref, computed } from 'vue'
+import SiteEdit from './components/SiteEdit.vue';
+import { ref, computed } from 'vue';
 
 const routes = {
   '/': EmployeeList,
   '/detail': EmployeeEdit,
-  '/siteList': SiteList
+  '/siteList': SiteList,
+  '/siteEdit': SiteEdit
 }
 
 const currentPath = ref(window.location.hash)

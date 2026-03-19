@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref} from 'vue'
 const currentPath = ref(window.location.hash)
 let employeeId =  currentPath.value.split("/")[2]
 const employee = {
@@ -47,11 +47,13 @@ function send() {
     employee.service = service.value
     employee.site = site.value
     console.log(employee)
+    window.location.replace('#/')
 }
 </script>
 
 <template>
     <a href="#/">retour</a>
+    <h1>Modifier l'employé</h1>
     <form @submit.prevent="submit">
         <label>
             Nom
