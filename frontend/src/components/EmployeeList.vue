@@ -50,7 +50,9 @@ let employees = [
 </script>
 <template>
     <h1>Liste des employées</h1>
-    <a href="#/siteList"> Liste des sites</a>
+    <div style="display: flex; flex-direction: row; justify-content: center;">
+        <a href="#/siteList"> Liste des sites</a><pre>    </pre><a href="#/serviceList">Liste des services</a>
+    </div>
     <table>
         <thead>
             <tr>
