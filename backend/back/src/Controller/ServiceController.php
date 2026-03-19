@@ -27,7 +27,7 @@ final class ServiceController extends AbstractController
     public function getServices(ServiceRepository $serviceRepository, SerializerInterface $serializer)
     {
         $serviceList = $serviceRepository->findAll();
-        $jsonServiceList = $serializer->serialize($serviceList, 'json');
+        $jsonServiceList = $serializer->serialize($serviceList, 'json', ['groups' => "getService"]);
         return new JsonResponse($jsonServiceList, Response::HTTP_OK, [], true);
     }
     #[Route('api/service/{id}', name: 'edit_service', methods:['PUT'])]
@@ -58,7 +58,7 @@ final class ServiceController extends AbstractController
     public function getService(int $id,ServiceRepository $serviceRepository, SerializerInterface $serializer)
     {
         $service = $serviceRepository->find($id);
-        $jsonService = $serializer->serialize($service, 'json');
+        $jsonService = $serializer->serialize($service, 'json', ['groups' => "getService"]);
         return new JsonResponse($jsonService, Response::HTTP_OK, [], true);
     }
 }

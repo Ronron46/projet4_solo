@@ -27,7 +27,7 @@ final class SiteController extends AbstractController
     public function getSites(SiteRepository $siteRepository, SerializerInterface $serializer)
     {
         $siteList = $siteRepository->findAll();
-        $jsonSiteList = $serializer->serialize($siteList, 'json');
+        $jsonSiteList = $serializer->serialize($siteList, 'json', ['groups' => "getSite"]);
         return new JsonResponse($jsonSiteList, Response::HTTP_OK, [], true);
     }
     #[Route('api/site/{id}', name: 'edit_site', methods:['PUT'])]
@@ -59,7 +59,7 @@ final class SiteController extends AbstractController
     public function getSite(int $id,SiteRepository $siteRepository, SerializerInterface $serializer)
     {
         $site = $siteRepository->find($id);
-        $jsonSite = $serializer->serialize($site, 'json');
+        $jsonSite = $serializer->serialize($site, 'json', ['groups' => "getSite"]);
         return new JsonResponse($jsonSite, Response::HTTP_OK, [], true);
     }
 }
