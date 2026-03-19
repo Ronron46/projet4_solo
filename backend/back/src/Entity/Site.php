@@ -22,6 +22,7 @@ class Site
     private ?string $name = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(["getSite"])]
     private ?string $status = null;
 
     /**
