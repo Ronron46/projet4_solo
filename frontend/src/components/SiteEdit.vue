@@ -21,7 +21,7 @@ let siteId =  currentPath.value.split("/")[2]
     <h1>Modifier le site</h1>
     <form @submit.prevent="submit">
         <label>
-            nom
+            Nom
             <input v-model="name">
         </label>
         <br>

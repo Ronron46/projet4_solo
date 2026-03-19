@@ -27,7 +27,7 @@
         <tbody v-for="service in services">
             <tr>
                 <td>{{ service.name }}</td>
-                <td><a href="/serviceEdit">Modifier</a></td>
+                <td><a href="#/serviceEdit">Modifier</a></td>
             </tr>
         </tbody>
     </table>

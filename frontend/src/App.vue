@@ -5,6 +5,7 @@ import EmployeeEdit from './components/EmployeeEdit.vue';
 import SiteList from './components/SiteList.vue';
 import SiteEdit from './components/SiteEdit.vue';
 import ServiceList from './components/ServiceList.vue';
+import ServiceEdit from './components/ServiceEdit.vue';
 import { ref, computed } from 'vue';
 
 const routes = {
@@ -12,7 +13,8 @@ const routes = {
   '/detail': EmployeeEdit,
   '/siteList': SiteList,
   '/siteEdit': SiteEdit,
-  '/serviceList': ServiceList
+  '/serviceList': ServiceList,
+  '/serviceEdit': ServiceEdit
 }
 
 const currentPath = ref(window.location.hash)
