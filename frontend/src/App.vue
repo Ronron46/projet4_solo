@@ -36,5 +36,7 @@ const currentView = computed(() => {
 </script>
 
 <template>
+  <suspense>
   <component :is="currentView" />
+  </suspense>
 </template>

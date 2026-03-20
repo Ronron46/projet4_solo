@@ -1,15 +1,14 @@
 <script setup>
     import { ref} from 'vue'
+import { editService, getService } from '../repository/ServiceRepository'
     const currentPath = ref(window.location.hash)
     let serviceId =  currentPath.value.split("/")[2]
-    const service = {
-            "id": 1,
-            "name": "Comptabilité"
-        }
+    let service = await getService(serviceId)
     const name = ref(service.name)
     function send() {
         service.name = name.value
         console.log(service)
+        editService(service)
         window.location.replace("#/serviceList")
     }
 </script>

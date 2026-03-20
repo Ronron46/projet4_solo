@@ -1,18 +1,7 @@
 <script setup>
-    let services = [
-    {
-        "id": 1,
-        "name": "Comptabilité"
-    },
-    {
-        "id": 2,
-        "name": "Production"
-    },
-    {
-        "id": 3,
-        "name": "Accueil"
-    }
-]
+import { getServices } from '../repository/ServiceRepository';
+
+    let services = await getServices()
 </script>
 
 <template>
@@ -27,7 +16,7 @@
         <tbody v-for="service in services">
             <tr>
                 <td>{{ service.name }}</td>
-                <td><a href="#/serviceEdit">Modifier</a></td>
+                <td><a :href="'#/serviceEdit/' + service.id">Modifier</a></td>
             </tr>
         </tbody>
     </table>

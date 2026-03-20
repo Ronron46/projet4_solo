@@ -41,7 +41,7 @@ final class SiteController extends AbstractController
         $site->setName($content['name']);
         $site->setStatus($content['status']);
         $em->flush();
-        $jsonSite = $serializer->serialize($site, 'json');
+        $jsonSite = $serializer->serialize($site, 'json', ['groups' => "getSite"]);
         return new JsonResponse($jsonSite, Response::HTTP_OK, [], true);
     }
 

@@ -40,7 +40,7 @@ final class ServiceController extends AbstractController
         $content = $request->toArray();
         $service->setName($content['name']);
         $em->flush();
-        $jsonService = $serializer->serialize($service, 'json');
+        $jsonService = $serializer->serialize($service, 'json', ['groups' => "getService"]);
         return new JsonResponse($jsonService, Response::HTTP_OK, [], true);
     }
 

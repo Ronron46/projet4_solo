@@ -1,37 +1,17 @@
 <script setup>
 import { ref} from 'vue'
+import { editEmployee, getEmployee } from '../repository/EmployeeRepository'
+import { getServices } from '../repository/ServiceRepository'
+import { getSites } from '../repository/SiteRepository'
 const currentPath = ref(window.location.hash)
 let employeeId =  currentPath.value.split("/")[2]
-const employee = {
-        "id": 1,
-        "name": "Jean",
-        "firstName": "Jean",
-        "phone": "0555555559",
-        "email": "jean.jean@boite.fr",
-        "service": {
-            "id": 2,
-            "name": "Production"
-        },
-        "site": {
-            "id": 2,
-            "name": "Nantes"
-        }
-    }
 
-const services = [
-    {
-        "id": 1,
-        "name": "Comptabilité"
-    },
-    {
-        "id": 2,
-        "name": "Production"
-    },
-    {
-        "id": 3,
-        "name": "Accueil"
-    }
-]
+let employee = await getEmployee(employeeId)
+
+let services = await getServices()
+
+let sites = await getSites()
+
 const name = ref(employee.name)
 const firstName = ref(employee.firstName)
 const phone = ref(employee.phone)
@@ -46,7 +26,7 @@ function send() {
     employee.email = email.value
     employee.service = service.value
     employee.site = site.value
-    console.log(employee)
+    editEmployee(employee)
     window.location.replace('#/')
 }
 </script>
@@ -84,7 +64,9 @@ function send() {
         <br>
         <label>
             Site
-            <input v-model="site">
+            <select v-model="site">
+                <option v-for="si in sites" :value="si.id">{{ si.name }}</option>
+            </select>
         </label>
         <br>
         <button @click="send()"> Valider</button>
