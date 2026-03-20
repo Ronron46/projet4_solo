@@ -8,7 +8,8 @@ let employees = ref(await getEmployees());
 </script>
 
 <template>
-    <h1>Liste des employées</h1>
+    <h1 class="test">Liste des employées</h1>
+    <a href="#/employeeEdit/create">Créer un employé</a>
     <div style="display: flex; flex-direction: row; justify-content: center;">
         <a href="#/siteList"> Liste des sites</a><pre>    </pre><a href="#/serviceList">Liste des services</a>
     </div>
@@ -21,7 +22,7 @@ let employees = ref(await getEmployees());
         </thead>
             <tbody v-for="(employee) in employees">
                     <tr>
-                        <td><a :href="'#/detail/' + employee.id" >Modifier</a></td>
+                        <td><a :href="'#/employeeEdit/' + employee.id" >Modifier</a></td>
                         <td>{{ employee.name }}</td>
                         <td>{{ employee.firstName }}</td>
                         <td>{{ employee.phone }}</td>

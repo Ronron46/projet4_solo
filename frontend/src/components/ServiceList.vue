@@ -7,6 +7,7 @@ import { getServices } from '../repository/ServiceRepository';
 <template>
     <a href="#/">Retour</a>
     <h1>Liste des Services</h1>
+    <a href="#/serviceEdit/create">Creer un nouveau service</a>
     <table style="width: 50%; margin-inline: auto;">
         <thead>
             <tr>

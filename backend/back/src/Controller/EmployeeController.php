@@ -18,12 +18,17 @@ use Symfony\Component\Serializer\SerializerInterface;
 final class EmployeeController extends AbstractController
 {
    #[Route('/api/employee', name: 'add_employee', methods:['POST'])]
-    public function newEmployee(Request $request, SerializerInterface $serializer, EntityManagerInterface $em)
+    public function newEmployee(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, ServiceRepository $serviceRepository, SiteRepository $siteRepository)
     {
         $employee = $serializer->deserialize($request->getContent(), Employee::class, 'json');
+        $content = $request->toArray();
+        $service = $serviceRepository->find(intval($content["service"]));
+        $site = $siteRepository->find(intval($content["site"]));
+        $employee->setService($service);
+        $employee->setSite($site);
         $em->persist($employee);
         $em->flush();
-        $jsonResponse = $serializer->serialize($employee, 'json');
+        $jsonResponse = $serializer->serialize($employee, 'json', ['groups' => 'getEmployee']);
         return new JsonResponse($jsonResponse, Response::HTTP_CREATED, [], true);
     }
     #[Route('/api/getEmployees', name: 'get_employees', methods:['GET'])]

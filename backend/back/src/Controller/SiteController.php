@@ -18,9 +18,10 @@ final class SiteController extends AbstractController
     public function newSite(Request $request, SerializerInterface $serializer, EntityManagerInterface $em)
     {
         $site = $serializer->deserialize($request->getContent(), Site::class, 'json');
+        $site->setStatus("site de Production");
         $em->persist($site);
         $em->flush();
-        $jsonResponse = $serializer->serialize($site, 'json');
+        $jsonResponse = $serializer->serialize($site, 'json', ['groups' => "getSite"]);
         return new JsonResponse($jsonResponse, Response::HTTP_CREATED, [], true);
     }
     #[Route('/api/getSites', name: 'get_sites', methods:['GET'])]

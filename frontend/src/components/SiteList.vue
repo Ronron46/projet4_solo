@@ -8,6 +8,7 @@ import { getSites } from '../repository/SiteRepository';
 <template>
     <a href="#/">Retour</a>
     <h1>Liste des sites</h1>
+    <a href="#/siteEdit/create">Creer un nouveau site</a>
     <table>
         <thead>
             <tr>

@@ -10,7 +10,6 @@ export async function getServices() {
 
     const resultat = await reponse.json();
     return resultat
-    // console.log(resultat);
   } catch (erreur) {
     console.error(erreur.message);
   }
@@ -28,7 +27,6 @@ export async function getService(id) {
 
     const resultat = await reponse.json();
     return resultat
-    // console.log(resultat);
   } catch (erreur) {
     console.error(erreur.message);
   }
@@ -47,7 +45,39 @@ export async function editService(service) {
     }
 
     const resultat = await reponse.json();
-    // console.log(resultat);
+  } catch (erreur) {
+    console.error(erreur.message);
+  }
+}
+
+export async function createService(service) {
+  const url = "http://127.0.0.1:8000/api/service";
+  try {
+    const reponse = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(service)
+    });
+    if (!reponse.ok) {
+      throw new Error(`Statut de réponse : ${reponse.status}`);
+    }
+
+    const resultat = await reponse.json();
+  } catch (erreur) {
+    console.error(erreur.message);
+  }
+}
+
+export async function deleteService(id){
+  const url = "http://127.0.0.1:8000/api/service/" + id;
+  try {
+    const reponse = await fetch(url, {
+        method: "DELETE"
+    });
+    if (!reponse.ok) {
+      throw new Error(`Statut de réponse : ${reponse.status}`);
+    }
+
+    const resultat = await reponse.json();
   } catch (erreur) {
     console.error(erreur.message);
   }

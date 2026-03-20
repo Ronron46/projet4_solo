@@ -10,7 +10,7 @@ import { ref, computed } from 'vue';
 
 const routes = {
   '/': EmployeeList,
-  '/detail': EmployeeEdit,
+  '/employeeEdit': EmployeeEdit,
   '/siteList': SiteList,
   '/siteEdit': SiteEdit,
   '/serviceList': ServiceList,
