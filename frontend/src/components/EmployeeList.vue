@@ -10,7 +10,6 @@ let employees = ref(await getEmployees());
 </script>
 
 <template>
-    <a href="#/login">Login</a>
     <h1 class="test">Liste des employées</h1>
     <a v-if="login != null" href="#/employeeEdit/create">Créer un employé</a>
     <div style="display: flex; flex-direction: row; justify-content: center;">
