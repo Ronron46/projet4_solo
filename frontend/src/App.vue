@@ -10,7 +10,7 @@ import { ref, computed } from 'vue';
 
 const routes = {
   '/': EmployeeList,
-  '/detail': EmployeeEdit,
+  '/employeeEdit': EmployeeEdit,
   '/siteList': SiteList,
   '/siteEdit': SiteEdit,
   '/serviceList': ServiceList,
@@ -36,5 +36,7 @@ const currentView = computed(() => {
 </script>
 
 <template>
+  <suspense>
   <component :is="currentView" />
+  </suspense>
 </template>
