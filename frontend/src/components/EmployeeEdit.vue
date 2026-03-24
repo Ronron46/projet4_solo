@@ -1,13 +1,15 @@
 <script setup>
-import { ref} from 'vue'
+import { inject, ref} from 'vue'
 import { createEmployee, editEmployee, getEmployee, deleteEmployee } from '../repository/EmployeeRepository'
 import { getServices } from '../repository/ServiceRepository'
 import { getSites } from '../repository/SiteRepository'
+
+let login = inject('login')
 const currentPath = ref(window.location.hash)
 let employeeId =  currentPath.value.split("/")[2]
 let employee = ""
 if (employeeId != "create") {
-    employee = await getEmployee(employeeId)
+    employee = await getEmployee(employeeId, login)
 } else {
     employee = {
         "name":"",
@@ -38,9 +40,9 @@ function send() {
     employee.service = service.value
     employee.site = site.value
     if (employeeId != "create"){
-        editEmployee(employee)
+        editEmployee(employee, login)
     }else {
-        createEmployee(employee)
+        createEmployee(employee, login)
     }
     setTimeout(() => {
         window.location.replace('#/')}, "300")
@@ -48,7 +50,7 @@ function send() {
 
 function deleteEmployeeConfirm(id) {
     if(confirm("voulez vous vraiment supprimer ce Service?")) {
-        deleteEmployee(id)
+        deleteEmployee(id, login)
         setTimeout(() => {
         window.location.replace('#/')}, "300")
     }
@@ -59,42 +61,42 @@ function deleteEmployeeConfirm(id) {
     <a href="#/">retour</a>
     <h1 v-if="employeeId != 'create'">Modifier l'employé</h1>
     <h1 v-else>Creer un nouvel employé</h1>
-    <form @submit.prevent="submit">
+    <form @v-on:submit.prevent="send()">
         <label>
             Nom
-            <input v-model="name">
+            <input required v-model="name">
         </label>
         <br>
         <label>
             Prénom
-            <input v-model="firstName">
+            <input required v-model="firstName">
         </label>
         <br>
         <label>
             Téléphone
-            <input v-model="phone">
+            <input required v-model="phone">
         </label>
         <br>
         <label>
             Email
-            <input v-model="email">
+            <input required type="email" v-model="email">
         </label>
         <br>
         <label>
             Service
-            <select v-model="service" >
+            <select required v-model="service" >
                 <option v-for="s in services" :value="s.id">{{ s.name }}</option>
             </select>
         </label>
         <br>
         <label>
             Site
-            <select v-model="site">
+            <select required v-model="site">
                 <option v-for="si in sites" :value="si.id">{{ si.name }}</option>
             </select>
         </label>
         <br>
-        <button @click="send()"> Valider</button>
+        <button type="submit"> Valider</button>
     </form>
         <button v-if="employeeId!='create'" style="width: 25%; margin-inline: auto; background-color: red; border-radius: 0.2rem; padding: 0.2rem; margin-top: 2rem;" v-on:click="deleteEmployeeConfirm(employee.id)">supprimer</button>
 </template>
