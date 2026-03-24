@@ -31,6 +31,12 @@
       ],
       "category": "app.development"
     },
+    "win":{
+        "target":[
+            "nsis",
+            "msi"
+        ]
+    },
     "directories":{
         "buildResources":"dist",
         "output":"release"
