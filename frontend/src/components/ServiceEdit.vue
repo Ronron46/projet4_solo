@@ -1,11 +1,13 @@
 <script setup>
-    import { ref} from 'vue'
+import { inject, ref} from 'vue'
 import { createService, deleteService, editService, getService } from '../repository/ServiceRepository'
+
+let login = inject('login')
     const currentPath = ref(window.location.hash)
     let serviceId =  currentPath.value.split("/")[2]
     let service
     if (serviceId != "create") {
-        service = await getService(serviceId)
+        service = await getService(serviceId, login)
     } else {
         service = {
             "name":""
@@ -15,9 +17,9 @@ import { createService, deleteService, editService, getService } from '../reposi
     function send() {
         service.name = name.value
         if (serviceId != "create") {
-            editService(service)
+            editService(service, login)
         } else {
-            createService(service)
+            createService(service, login)
         }
         setTimeout(() => {
         window.location.replace('#/serviceList')}, "300")
@@ -25,7 +27,7 @@ import { createService, deleteService, editService, getService } from '../reposi
 
     function deleteServiceConfirm(id) {
         if(confirm("voulez vous vraiment supprimer ce Service?")) {
-            deleteService(id)
+            deleteService(id, login)
             setTimeout(() => {
             window.location.replace('#/serviceList')}, "300")
         }
@@ -36,13 +38,13 @@ import { createService, deleteService, editService, getService } from '../reposi
     <a href="#/serviceList">Retour</a>
     <h1 v-if="serviceId!= 'create'">Modifier le Service</h1>
     <h1 v-else> Creer un nouveau service</h1>
-    <form @submit.prevent="submit">
+    <form v-on:submit.prevent="send()">
         <label>
             Nom
-            <input v-model="name">
+            <input required v-model="name">
         </label>
         <br>
-        <button @click="send()">Valider</button>
+        <button type="submit">Valider</button>
     </form>
     <button v-if="serviceId!='create'" style="width: 25%; margin-inline: auto; background-color: red; border-radius: 0.2rem; padding: 0.2rem; margin-top: 2rem;" v-on:click="deleteServiceConfirm(service.id)">supprimer</button>
 </template>

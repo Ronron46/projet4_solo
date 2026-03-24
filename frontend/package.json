@@ -7,14 +7,33 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "electron:run": "electron ."
+    "electron:run": "electron .",
+    "app:dir": "electron-builder --dir",
+    "app:dist": "electron-builder"
   },
   "dependencies": {
     "vue": "^3.5.30"
   },
   "devDependencies": {
+    "electron-builder": "^26.8.1",
     "@vitejs/plugin-vue": "^6.0.5",
     "electron": "^41.0.3",
     "vite": "^8.0.0"
-  }
+  },
+  "build": {
+    "appId": "fr.annuaire",
+    "linux": {
+      "icon": "icons/icon.png",
+      "asar": true,
+      "description": "annuaire d'entreprise",
+      "target": [
+        "AppImage"
+      ],
+      "category": "app.development"
+    },
+    "directories":{
+        "buildResources":"dist",
+        "output":"release"
+    }
+}
 }

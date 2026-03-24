@@ -3,6 +3,6 @@ import vue from '@vitejs/plugin-vue'
 const path = require('path')
 // https://vite.dev/config/
 export default defineConfig({
-  base: path.resolve(__dirname, './dist'),
+  base: "/home/maxime/cesi/projet4_solo/frontend/dist",
   plugins: [vue()],
 })

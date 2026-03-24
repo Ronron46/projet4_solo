@@ -1,5 +1,4 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
 import EmployeeList from './components/EmployeeList.vue';
 import EmployeeEdit from './components/EmployeeEdit.vue';
 import SiteList from './components/SiteList.vue';
