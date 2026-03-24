@@ -64,7 +64,7 @@ final class EmployeeController extends AbstractController
     public function getEmployee(int $id,EmployeeRepository $employeeRepository, SerializerInterface $serializer)
     {
         $employee = $employeeRepository->find($id);
-        $jsonemployee = $serializer->serialize($employee, 'json');
+        $jsonemployee = $serializer->serialize($employee, 'json', ['groups' => 'getEmployee']);
         return new JsonResponse($jsonemployee, Response::HTTP_OK, [], true);
     }
 }
