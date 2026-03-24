@@ -5,6 +5,7 @@ const menu = new Menu()
 
 const createWindow = () => {
   const win = new BrowserWindow({
+    autoHideMenuBar: true,
     width: 800,
     height: 600,
     webPreferences: {
@@ -22,9 +23,9 @@ const createWindow = () => {
   menu.append(new MenuItem({ label: 'Custom Menu', submenu }))
   Menu.setApplicationMenu(menu)
 
-  win.loadFile('dist/index.html')
+  win.loadFile('/home/maxime/cesi/projet4_solo/frontend/dist/index.html')
   //win.removeMenu()
-  win.webContents.openDevTools()
+  //win.webContents.openDevTools()
 }
 
 app.whenReady().then(() => {

@@ -15,11 +15,14 @@ export async function getServices() {
   }
 }
 
-export async function getService(id) {
+export async function getService(id, login) {
   const url = "http://127.0.0.1:8000/api/service/" + id;
   try {
     const reponse = await fetch(url, {
-        method: "GET"
+        method: "GET",
+        headers: {
+          Authorization: "bearer " + login.value
+        }
     });
     if (!reponse.ok) {
       throw new Error(`Statut de réponse : ${reponse.status}`);
@@ -33,12 +36,15 @@ export async function getService(id) {
 }
 
 
-export async function editService(service) {
+export async function editService(service, login) {
   const url = "http://127.0.0.1:8000/api/service/" + service.id;
   try {
     const reponse = await fetch(url, {
         method: "PUT",
-        body: JSON.stringify(service)
+        body: JSON.stringify(service),
+        headers: {
+          Authorization: "bearer " + login.value
+        }
     });
     if (!reponse.ok) {
       throw new Error(`Statut de réponse : ${reponse.status}`);
@@ -50,12 +56,15 @@ export async function editService(service) {
   }
 }
 
-export async function createService(service) {
+export async function createService(service, login) {
   const url = "http://127.0.0.1:8000/api/service";
   try {
     const reponse = await fetch(url, {
         method: "POST",
-        body: JSON.stringify(service)
+        body: JSON.stringify(service),
+        headers: {
+          Authorization: "bearer " + login.value
+        }
     });
     if (!reponse.ok) {
       throw new Error(`Statut de réponse : ${reponse.status}`);
@@ -67,11 +76,14 @@ export async function createService(service) {
   }
 }
 
-export async function deleteService(id){
+export async function deleteService(id, login){
   const url = "http://127.0.0.1:8000/api/service/" + id;
   try {
     const reponse = await fetch(url, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+          Authorization: "bearer " + login.value
+        }
     });
     if (!reponse.ok) {
       throw new Error(`Statut de réponse : ${reponse.status}`);

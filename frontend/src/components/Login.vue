@@ -4,8 +4,8 @@ import { ref} from 'vue'
 import { User } from "../services/User";
 let user = ref(new User)
 let error = ref('')
-function send() {
-    let token = AuthService.login(user.value);
+async function send() {
+    let token = await AuthService.login(user.value);
     if (token == 'error') {
         error.value = "bad-login"
     } else {
@@ -21,16 +21,16 @@ function send() {
     <div v-if="error == 'bad-login'" style="color: red;">
         Mauvais login ou mot de passe
     </div>
-    <form @submit.prevent="submit">
+    <form v-on:submit.prevent="send()">
         <label>
             Nom d'utilisateur
-            <input v-model="user.userName">
+            <input required="" type="email" v-model="user.userName">
         </label>
         <br>
         <label>
             mot de passe
-            <input v-model="user.passwd">
+            <input required type="password" v-model="user.passwd">
         </label>
-        <button @click="send()">Valider</button>
+        <button type="submit">Valider</button>
     </form>
 </template>

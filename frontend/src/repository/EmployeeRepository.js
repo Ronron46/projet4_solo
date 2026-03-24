@@ -15,11 +15,14 @@ export async function getEmployees() {
   }
 }
 
-export async function getEmployee(id) {
+export async function getEmployee(id, login) {
   const url = "http://127.0.0.1:8000/api/employee/" + id;
   try {
     const reponse = await fetch(url, {
-        method: "GET"
+        method: "GET",
+        headers: {
+          Authorization: "bearer " + login.value
+        }
     });
     if (!reponse.ok) {
       throw new Error(`Statut de réponse : ${reponse.status}`);
@@ -32,12 +35,15 @@ export async function getEmployee(id) {
   }
 }
 
-export async function editEmployee(employee) {
+export async function editEmployee(employee, login) {
   const url = "http://127.0.0.1:8000/api/employee/" + employee.id;
   try {
     const reponse = await fetch(url, {
         method: "PUT",
-        body: JSON.stringify(employee)
+        body: JSON.stringify(employee),
+        headers: {
+          Authorization: "bearer " + login.value
+        }
     });
     if (!reponse.ok) {
       throw new Error(`Statut de réponse : ${reponse.status}`);
@@ -49,12 +55,15 @@ export async function editEmployee(employee) {
   }
 }
 
-export async function createEmployee(employee) {
+export async function createEmployee(employee, login) {
   const url = "http://127.0.0.1:8000/api/employee";
   try {
     const reponse = await fetch(url, {
         method: "POST",
-        body: JSON.stringify(employee)
+        body: JSON.stringify(employee),
+        headers: {
+          Authorization: "bearer " + login.value
+        }
     });
     if (!reponse.ok) {
       throw new Error(`Statut de réponse : ${reponse.status}`);
@@ -66,11 +75,14 @@ export async function createEmployee(employee) {
   }
 }
 
-export async function deleteEmployee(id){
+export async function deleteEmployee(id, login){
   const url = "http://127.0.0.1:8000/api/employee/" + id;
   try {
     const reponse = await fetch(url, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+          Authorization: "bearer " + login.value
+        }
     });
     if (!reponse.ok) {
       throw new Error(`Statut de réponse : ${reponse.status}`);

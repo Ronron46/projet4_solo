@@ -15,11 +15,14 @@ export async function getSites() {
   }
 }
 
-export async function getSite(id) {
+export async function getSite(id, login) {
   const url = "http://127.0.0.1:8000/api/site/" + id;
   try {
     const reponse = await fetch(url, {
-        method: "GET"
+        method: "GET",
+        headers: {
+          Authorization: "bearer " + login.value
+        }
     });
     if (!reponse.ok) {
       throw new Error(`Statut de réponse : ${reponse.status}`);
@@ -33,12 +36,15 @@ export async function getSite(id) {
 }
 
 
-export async function editSite(site) {
+export async function editSite(site, login) {
   const url = "http://127.0.0.1:8000/api/site/" + site.id;
   try {
     const reponse = await fetch(url, {
         method: "PUT",
-        body: JSON.stringify(site)
+        body: JSON.stringify(site),
+        headers: {
+          Authorization: "bearer " + login.value
+        }
     });
     if (!reponse.ok) {
       throw new Error(`Statut de réponse : ${reponse.status}`);
@@ -50,12 +56,15 @@ export async function editSite(site) {
   }
 }
 
-export async function createSite(site) {
+export async function createSite(site, login) {
   const url = "http://127.0.0.1:8000/api/site";
   try {
     const reponse = await fetch(url, {
         method: "POST",
-        body: JSON.stringify(site)
+        body: JSON.stringify(site),
+        headers: {
+          Authorization: "bearer " + login.value
+        }
     });
     if (!reponse.ok) {
       throw new Error(`Statut de réponse : ${reponse.status}`);
@@ -67,11 +76,14 @@ export async function createSite(site) {
   }
 }
 
-export async function deleteSite(id){
+export async function deleteSite(id, login){
   const url = "http://127.0.0.1:8000/api/site/" + id;
   try {
     const reponse = await fetch(url, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+          Authorization: "bearer " + login.value
+        }
     });
     if (!reponse.ok) {
       throw new Error(`Statut de réponse : ${reponse.status}`);
