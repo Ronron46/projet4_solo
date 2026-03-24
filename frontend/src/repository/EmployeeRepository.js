@@ -1,5 +1,7 @@
+import { uri } from "./url";
+
 export async function getEmployees() {
-  const url = "http://127.0.0.1:8000/api/getEmployees";
+  const url = uri + "/api/getEmployees";
   try {
     const reponse = await fetch(url, {
         method: "GET"
@@ -16,7 +18,7 @@ export async function getEmployees() {
 }
 
 export async function getEmployee(id, login) {
-  const url = "http://127.0.0.1:8000/api/employee/" + id;
+  const url = uri + "/api/employee/" + id;
   try {
     const reponse = await fetch(url, {
         method: "GET",
@@ -36,7 +38,7 @@ export async function getEmployee(id, login) {
 }
 
 export async function editEmployee(employee, login) {
-  const url = "http://127.0.0.1:8000/api/employee/" + employee.id;
+  const url = uri + "/api/employee/" + employee.id;
   try {
     const reponse = await fetch(url, {
         method: "PUT",
@@ -56,7 +58,7 @@ export async function editEmployee(employee, login) {
 }
 
 export async function createEmployee(employee, login) {
-  const url = "http://127.0.0.1:8000/api/employee";
+  const url = uri + "/api/employee";
   try {
     const reponse = await fetch(url, {
         method: "POST",
@@ -76,7 +78,7 @@ export async function createEmployee(employee, login) {
 }
 
 export async function deleteEmployee(id, login){
-  const url = "http://127.0.0.1:8000/api/employee/" + id;
+  const url = uri + "/api/employee/" + id;
   try {
     const reponse = await fetch(url, {
         method: "DELETE",

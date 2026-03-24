@@ -1,5 +1,7 @@
+import { uri } from "./url";
+
 export async function loginCheck(mail, password) {
-  const url = "http://127.0.0.1:8000/api/login_check";
+  const url = uri + "/api/login_check";
   let result = []
   try {
     const reponse = await fetch(url, {

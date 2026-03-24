@@ -1,5 +1,7 @@
+import { uri } from "./url";
+
 export async function getSites() {
-  const url = "http://127.0.0.1:8000/api/getSites";
+  const url = uri + "/api/getSites";
   try {
     const reponse = await fetch(url, {
         method: "GET"
@@ -16,7 +18,7 @@ export async function getSites() {
 }
 
 export async function getSite(id, login) {
-  const url = "http://127.0.0.1:8000/api/site/" + id;
+  const url = uri + "/api/site/" + id;
   try {
     const reponse = await fetch(url, {
         method: "GET",
@@ -37,7 +39,7 @@ export async function getSite(id, login) {
 
 
 export async function editSite(site, login) {
-  const url = "http://127.0.0.1:8000/api/site/" + site.id;
+  const url = uri + "/api/site/" + site.id;
   try {
     const reponse = await fetch(url, {
         method: "PUT",
@@ -57,7 +59,7 @@ export async function editSite(site, login) {
 }
 
 export async function createSite(site, login) {
-  const url = "http://127.0.0.1:8000/api/site";
+  const url = uri + "/api/site";
   try {
     const reponse = await fetch(url, {
         method: "POST",
@@ -77,7 +79,7 @@ export async function createSite(site, login) {
 }
 
 export async function deleteSite(id, login){
-  const url = "http://127.0.0.1:8000/api/site/" + id;
+  const url = uri + "/api/site/" + id;
   try {
     const reponse = await fetch(url, {
         method: "DELETE",

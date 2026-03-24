@@ -1,5 +1,7 @@
+import { uri } from "./url";
+
 export async function getServices() {
-  const url = "http://127.0.0.1:8000/api/getServices";
+  const url = uri + "/api/getServices";
   try {
     const reponse = await fetch(url, {
         method: "GET"
@@ -16,7 +18,7 @@ export async function getServices() {
 }
 
 export async function getService(id, login) {
-  const url = "http://127.0.0.1:8000/api/service/" + id;
+  const url = uri + "/api/service/" + id;
   try {
     const reponse = await fetch(url, {
         method: "GET",
@@ -37,7 +39,7 @@ export async function getService(id, login) {
 
 
 export async function editService(service, login) {
-  const url = "http://127.0.0.1:8000/api/service/" + service.id;
+  const url = uri + "/api/service/" + service.id;
   try {
     const reponse = await fetch(url, {
         method: "PUT",
@@ -57,7 +59,7 @@ export async function editService(service, login) {
 }
 
 export async function createService(service, login) {
-  const url = "http://127.0.0.1:8000/api/service";
+  const url = uri + "/api/service";
   try {
     const reponse = await fetch(url, {
         method: "POST",
@@ -77,7 +79,7 @@ export async function createService(service, login) {
 }
 
 export async function deleteService(id, login){
-  const url = "http://127.0.0.1:8000/api/service/" + id;
+  const url = uri + "/api/service/" + id;
   try {
     const reponse = await fetch(url, {
         method: "DELETE",
