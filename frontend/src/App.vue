@@ -44,7 +44,6 @@ function loginCheck() {
   } else {
     login.value = null
   }
-console.log(localStorage.getItem('user'))
 }
 
 function deconnect() {
@@ -54,15 +53,7 @@ function deconnect() {
 
 provide('login', login)
 
-// ipcRenderer.on('loginPage', (e)=> {
-//   console.log(e)
-// })
-
-// window.ipc.on('loginPage', (e) => {
-//   console.log('oui')
-// })
-
-window.electronAPI.loginPage((value) => {
+window.electronAPI.loginPage(() => {
   window.location.replace('#/login')
 })
 
