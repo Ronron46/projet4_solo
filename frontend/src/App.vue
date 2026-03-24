@@ -6,15 +6,18 @@ import SiteList from './components/SiteList.vue';
 import SiteEdit from './components/SiteEdit.vue';
 import ServiceList from './components/ServiceList.vue';
 import ServiceEdit from './components/ServiceEdit.vue';
-import { ref, computed } from 'vue';
+import { ref, computed, provide } from 'vue';
+import Login from './components/Login.vue';
+import { AuthService } from './services/AuthService';
 
 const routes = {
   '/': EmployeeList,
-  '/detail': EmployeeEdit,
+  '/employeeEdit': EmployeeEdit,
   '/siteList': SiteList,
   '/siteEdit': SiteEdit,
   '/serviceList': ServiceList,
-  '/serviceEdit': ServiceEdit
+  '/serviceEdit': ServiceEdit,
+  '/login': Login
 }
 
 const currentPath = ref(window.location.hash)
@@ -33,8 +36,36 @@ const currentView = computed(() => {
   }
   
 })
+
+let login = ref('')
+function loginCheck() {
+  if (localStorage.getItem('user') != null) {
+  login.value = localStorage.getItem('user')
+  } else {
+    login.value = null
+  }
+}
+
+function deconnect() {
+  AuthService.logout()
+  login.value = null
+}
+
+provide('login', login)
+
+window.electronAPI.loginPage(() => {
+  window.location.replace('#/login')
+})
+
 </script>
 
 <template>
+  {{ loginCheck() }}
+      <div v-if="login != null">
+      hello there
+      <button @click="deconnect()"> se déconnecter</button>
+    </div>
+  <suspense>
   <component :is="currentView" />
+  </suspense>
 </template>

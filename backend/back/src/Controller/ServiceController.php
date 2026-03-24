@@ -20,7 +20,7 @@ final class ServiceController extends AbstractController
         $service = $serializer->deserialize($request->getContent(), Service::class, 'json');
         $em->persist($service);
         $em->flush();
-        $jsonResponse = $serializer->serialize($service, 'json');
+        $jsonResponse = $serializer->serialize($service, 'json', ['groups' => "getService"]);
         return new JsonResponse($jsonResponse, Response::HTTP_CREATED, [], true);
     }
     #[Route('/api/getServices', name: 'get_services', methods:['GET'])]
@@ -40,7 +40,7 @@ final class ServiceController extends AbstractController
         $content = $request->toArray();
         $service->setName($content['name']);
         $em->flush();
-        $jsonService = $serializer->serialize($service, 'json');
+        $jsonService = $serializer->serialize($service, 'json', ['groups' => "getService"]);
         return new JsonResponse($jsonService, Response::HTTP_OK, [], true);
     }
 
