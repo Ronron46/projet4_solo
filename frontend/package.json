@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "main": "main.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "electron:run": "electron .",
-    "app:dir": "electron-builder --dir",
-    "app:dist": "electron-builder"
+    "dev": "./workDir.sh && vite",
+    "build": "./workDir.sh && vite build",
+    "preview": "./workDir.sh &&v ite preview",
+    "electron:run": "./workDir.sh && electron .",
+    "app:dir": "./workDir.sh && electron-builder --dir",
+    "app:dist": "./workDir.sh && electron-builder"
   },
   "dependencies": {
     "vue": "^3.5.30"

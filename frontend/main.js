@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron/main')
 const { dialog, Menu, MenuItem } = require('electron/main')
+const { workDir } = require('./localdir')
 
 const menu = new Menu()
 
@@ -9,7 +10,7 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      preload:  '/home/maxime/cesi/projet4_solo/frontend/preload.js',
+      preload: workDir + '/preload.js',
     }
   })
 
@@ -23,9 +24,9 @@ const createWindow = () => {
   menu.append(new MenuItem({ label: 'Custom Menu', submenu }))
   Menu.setApplicationMenu(menu)
 
-  win.loadFile('/home/maxime/cesi/projet4_solo/frontend/dist/index.html')
+  win.loadFile(workDir + '/dist/index.html')
   //win.removeMenu()
-  //win.webContents.openDevTools()
+  win.webContents.openDevTools()
 }
 
 app.whenReady().then(() => {
