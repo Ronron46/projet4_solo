@@ -2,6 +2,7 @@
 import { inject, ref } from 'vue'
 import { createSite, editSite, getSite, deleteSite } from '../repository/SiteRepository'
 let login = inject('login')
+let error = ref('')
 const currentPath = ref(window.location.hash)
 let siteId =  currentPath.value.split("/")[2]
 let site
@@ -25,11 +26,15 @@ function send(){
     window.location.replace('#/siteList')}, "300")
 }
 
-function deleteSiteConfirm(id) {
+async function deleteSiteConfirm(id) {
     if(confirm("voulez vous vraiment supprimer ce site?")) {
-        deleteSite(id, login)
-        setTimeout(() => {
-        window.location.replace('#/siteList')}, "300")
+        let response = await deleteSite(id, login)
+        if (response != "error"){
+            setTimeout(() => {
+            window.location.replace('#/siteList')}, "300")
+        } else {
+            error.value = 'delete-error'
+        }
     }
 }
 </script>
@@ -47,4 +52,7 @@ function deleteSiteConfirm(id) {
         <button type="submit"> Valider</button>
     </form>
     <button v-if="siteId!='create'" style="width: 25%; margin-inline: auto; background-color: red; border-radius: 0.2rem; padding: 0.2rem; margin-top: 2rem;" v-on:click="deleteSiteConfirm(site.id)">supprimer</button>
+    <div v-if="error == 'delete-error'" style="color: red;">
+        Vous ne pouvez pas supprimer ce site, des employés y sont assignés
+    </div>
 </template>

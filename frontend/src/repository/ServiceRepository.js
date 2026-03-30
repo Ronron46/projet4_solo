@@ -88,7 +88,7 @@ export async function deleteService(id, login){
         }
     });
     if (!reponse.ok) {
-      throw new Error(`Statut de réponse : ${reponse.status}`);
+      return 'error';
     }
 
     const resultat = await reponse.json();

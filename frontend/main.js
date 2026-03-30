@@ -26,7 +26,7 @@ const createWindow = () => {
 
   win.loadFile(workDir + '/dist/index.html')
   //win.removeMenu()
-  //win.webContents.openDevTools()
+  win.webContents.openDevTools()
 }
 
 app.whenReady().then(() => {
