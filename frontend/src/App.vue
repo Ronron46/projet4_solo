@@ -61,7 +61,6 @@ provide('login', login)
 <template>
   {{ loginCheck() }}
       <div v-if="login != null">
-      hello there
       <button @click="deconnect()"> se déconnecter</button>
     </div>
   <suspense>

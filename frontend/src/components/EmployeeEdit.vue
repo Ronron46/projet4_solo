@@ -35,7 +35,8 @@ const site = ref(employee.site.id)
 function send() {
     employee.name = name.value
     employee.firstName = firstName.value
-    employee.phone = phone.value
+    employee.phone =[phone.value.slice(0,2), " ", phone.value.slice(2,4), " ", phone.value.slice(4,6), " ", phone.value.slice(6,8), " ", phone.value.slice(8,10)].join('')
+    console.log(employee.phone)
     employee.email = email.value
     employee.service = service.value
     employee.site = site.value
@@ -49,7 +50,7 @@ function send() {
 }
 
 function deleteEmployeeConfirm(id) {
-    if(confirm("voulez vous vraiment supprimer ce Service?")) {
+    if(confirm("voulez vous vraiment supprimer cet employé?")) {
         deleteEmployee(id, login)
         setTimeout(() => {
         window.location.replace('#/')}, "300")
@@ -61,7 +62,7 @@ function deleteEmployeeConfirm(id) {
     <a href="#/">retour</a>
     <h1 v-if="employeeId != 'create'">Modifier l'employé</h1>
     <h1 v-else>Creer un nouvel employé</h1>
-    <form @v-on:submit.prevent="send()">
+    <form v-on:submit.prevent="send()">
         <label>
             Nom
             <input required v-model="name">
@@ -96,7 +97,7 @@ function deleteEmployeeConfirm(id) {
             </select>
         </label>
         <br>
-        <button type="submit"> Valider</button>
+        <button type="submit">Valider</button>
     </form>
         <button v-if="employeeId!='create'" style="width: 25%; margin-inline: auto; background-color: red; border-radius: 0.2rem; padding: 0.2rem; margin-top: 2rem;" v-on:click="deleteEmployeeConfirm(employee.id)">supprimer</button>
 </template>
