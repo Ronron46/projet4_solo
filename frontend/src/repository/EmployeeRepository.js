@@ -37,6 +37,28 @@ export async function getEmployee(id, login) {
   }
 }
 
+export async function findEmployee(name, service, site) {
+  const url = uri + "/api/findEmployee";
+  try {
+    const reponse = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          "name": name,
+          "service": service,
+          "site": site 
+        })
+    });
+    if (!reponse.ok) {
+      throw new Error(`Statut de réponse : ${reponse.status}`);
+    }
+
+    const resultat = await reponse.json();
+    return resultat
+  } catch (erreur) {
+    console.error(erreur.message);
+  }
+}
+
 export async function editEmployee(employee, login) {
   const url = uri + "/api/employee/" + employee.id;
   try {

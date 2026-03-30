@@ -77,5 +77,15 @@ final class EmployeeController extends AbstractController
 
         return new JsonResponse($jsonemployee, Response::HTTP_OK, [], true);
     }
+
+    #[Route('api/findEmployee', name: 'find_employee', methods:['POST'])]
+    public function findEmployee(Request $request,EmployeeRepository $employeeRepository, SerializerInterface $serializer)
+    {
+        $content = $request->toArray();
+        $employees = $employeeRepository->searchByName($content['name'], $content["service"], $content["site"]);
+        $jsonEmployees = $serializer->serialize($employees, 'json', ['groups' => 'getEmployee']);
+        
+        return new JsonResponse($jsonEmployees, Response::HTTP_OK, [], true);
+    }
 }
 
