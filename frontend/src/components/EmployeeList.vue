@@ -22,7 +22,7 @@ async function search() {
 </script>
 
 <template>
-    <a href="#/login">login</a>
+    <!-- <a href="#/login">login</a> -->
     <h1 class="test">Liste des employées</h1>
     <a v-if="login != null" href="#/employeeEdit/create">Créer un employé</a>
     <div style="display: flex; flex-direction: row; justify-content: center;">
@@ -48,7 +48,7 @@ async function search() {
                 <option v-for="si in sites" :value="si.id">{{ si.name }}</option>
             </select>
             </label>
-            <button type="submit"> chercher </button>
+            <button type="submit" style="margin-left: 0.5rem;"> chercher </button>
         </form>
     </div>
     <table>

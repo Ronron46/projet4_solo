@@ -1,1 +1,1 @@
-export let workDir = '/home/ronron/cours_cesi/projet4_solo/frontend'
+export let workDir = '/home/ronron/cesi/projet4_solo/frontend'

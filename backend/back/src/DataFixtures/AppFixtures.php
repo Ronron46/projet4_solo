@@ -25,6 +25,11 @@ class AppFixtures extends Fixture
         $user->setPassword($this->userPasswordHasher->hashPassword($user, 'password'));
         $user->setRoles(['ADMIN']);
         $manager->persist($user);
+        $user = new User;
+        $user->setEmail('admin@site.fr');
+        $user->setPassword($this->userPasswordHasher->hashPassword($user, 'password'));
+        $user->setRoles(['ADMIN']);
+        $manager->persist($user);
         // $product = new Product();
         // $manager->persist($product);
         $listService = [];
