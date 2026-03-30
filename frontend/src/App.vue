@@ -52,9 +52,9 @@ function deconnect() {
 
 provide('login', login)
 
-window.electronAPI.loginPage(() => {
-  window.location.replace('#/login')
-})
+// window.electronAPI.loginPage(() => {
+//   window.location.replace('#/login')
+// })
 
 </script>
 

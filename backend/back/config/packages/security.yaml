@@ -44,6 +44,7 @@ security:
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: '^/api/getEmployees', role: PUBLIC_ACCESS }
         - { path: "^/api/getServices", role: PUBLIC_ACCESS }
+        - {path: "^/api/findEmployee", role: PUBLIC_ACCESS }
         - {path: "^/api/getSites", role: PUBLIC_ACCESS }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
 

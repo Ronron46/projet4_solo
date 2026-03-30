@@ -40,4 +40,16 @@ class EmployeeRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    public function searchByName($name, $service, $site) : array
+    {
+        $qb =  $this->createQueryBuilder('e')
+            ->andWhere('e.name LIKE :name ');
+        ($service != "") ? $qb->andWhere('e.service = :service')->setParameter("service", $service) : "";
+        ($site != "") ? $qb->andWhere('e.site = :site')->setParameter("site", $site) : "";
+
+            return $qb->setParameter('name',"%". $name ."%")
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
