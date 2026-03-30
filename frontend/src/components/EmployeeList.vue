@@ -23,7 +23,7 @@ async function search() {
 
 <template>
     <!-- <a href="#/login">login</a> -->
-    <h1 class="test">Liste des employées</h1>
+    <h1 class="test">Liste des employés</h1>
     <a v-if="login != null" href="#/employeeEdit/create">Créer un employé</a>
     <div style="display: flex; flex-direction: row; justify-content: center;">
         <a href="#/siteList"> Liste des sites</a><pre>    </pre><a href="#/serviceList">Liste des services</a>
