@@ -14,7 +14,7 @@ let sites = await getSites()
     <table>
         <thead>
             <tr>
-                <th>Nom</th><th>status</th><th v-if="login != null"></th>
+                <th>Nom</th><th>statut</th><th v-if="login != null"></th>
             </tr>
         </thead>
         <tbody v-for="site in sites">

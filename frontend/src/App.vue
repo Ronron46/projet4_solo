@@ -52,16 +52,15 @@ function deconnect() {
 
 provide('login', login)
 
-// window.electronAPI.loginPage(() => {
-//   window.location.replace('#/login')
-// })
+window.electronAPI.loginPage(() => {
+  window.location.replace('#/login')
+})
 
 </script>
 
 <template>
   {{ loginCheck() }}
       <div v-if="login != null">
-      hello there
       <button @click="deconnect()"> se déconnecter</button>
     </div>
   <suspense>

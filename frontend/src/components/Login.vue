@@ -24,13 +24,14 @@ async function send() {
     <form v-on:submit.prevent="send()">
         <label>
             Nom d'utilisateur
-            <input required="" type="email" v-model="user.userName">
+            <input required v-model="user.userName">
         </label>
         <br>
         <label>
             mot de passe
             <input required type="password" v-model="user.passwd">
         </label>
+        <br>
         <button type="submit">Valider</button>
     </form>
 </template>

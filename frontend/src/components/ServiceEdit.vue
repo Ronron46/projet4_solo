@@ -3,35 +3,40 @@ import { inject, ref} from 'vue'
 import { createService, deleteService, editService, getService } from '../repository/ServiceRepository'
 
 let login = inject('login')
-    const currentPath = ref(window.location.hash)
-    let serviceId =  currentPath.value.split("/")[2]
-    let service
+let error = ref('')
+const currentPath = ref(window.location.hash)
+let serviceId =  currentPath.value.split("/")[2]
+let service
+if (serviceId != "create") {
+    service = await getService(serviceId, login)
+} else {
+    service = {
+        "name":""
+    }
+}
+const name = ref(service.name)
+function send() {
+    service.name = name.value
     if (serviceId != "create") {
-        service = await getService(serviceId, login)
+        editService(service, login)
     } else {
-        service = {
-            "name":""
-        }
+        createService(service, login)
     }
-    const name = ref(service.name)
-    function send() {
-        service.name = name.value
-        if (serviceId != "create") {
-            editService(service, login)
-        } else {
-            createService(service, login)
-        }
-        setTimeout(() => {
-        window.location.replace('#/serviceList')}, "300")
-    }
+    setTimeout(() => {
+    window.location.replace('#/serviceList')}, "300")
+}
 
-    function deleteServiceConfirm(id) {
-        if(confirm("voulez vous vraiment supprimer ce Service?")) {
-            deleteService(id, login)
+async function deleteServiceConfirm(id) {
+    if(confirm("voulez vous vraiment supprimer ce Service?")) {
+        let response = await deleteService(id, login)
+        if (response != "error"){
             setTimeout(() => {
             window.location.replace('#/serviceList')}, "300")
-        }
+        } else {
+            error.value = "delete-error"
+        }     
     }
+}
 </script>
 
 <template>
@@ -47,4 +52,7 @@ let login = inject('login')
         <button type="submit">Valider</button>
     </form>
     <button v-if="serviceId!='create'" style="width: 25%; margin-inline: auto; background-color: red; border-radius: 0.2rem; padding: 0.2rem; margin-top: 2rem;" v-on:click="deleteServiceConfirm(service.id)">supprimer</button>
+    <div v-if="error == 'delete-error'" style="color: red;">
+        Vous ne pouvez pas supprimer ce service, des employés y sont assignés
+    </div>
 </template>

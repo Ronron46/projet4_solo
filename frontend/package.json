@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "./workDir.sh && vite",
     "build": "./workDir.sh && vite build",
-    "preview": "./workDir.sh &&v ite preview",
+    "preview": "./workDir.sh && vite preview",
     "electron:run": "./workDir.sh && electron .",
-    "app:dir": "./workDir.sh && electron-builder --dir",
-    "app:dist": "./workDir.sh && electron-builder"
+    "app:dir": "./workDir.sh && electron-builder --linux",
+    "app:dist": "./workDir.sh && electron-builder",
+    "app:win": "./workDir.sh && electron-builder --win"
   },
   "dependencies": {
     "vue": "^3.5.30"
@@ -21,13 +22,13 @@
     "vite": "^8.0.0"
   },
   "build": {
+    "icon": "icons/icon.png",
     "appId": "fr.annuaire",
     "linux": {
-      "icon": "icons/icon.png",
       "asar": true,
       "description": "annuaire d'entreprise",
       "target": [
-        "AppImage"
+        "appimage"
       ],
       "category": "app.development"
     },
