@@ -24,7 +24,7 @@ async function send() {
     <form v-on:submit.prevent="send()">
         <label>
             Nom d'utilisateur
-            <input required type="email" v-model="user.userName">
+            <input required v-model="user.userName">
         </label>
         <br>
         <label>

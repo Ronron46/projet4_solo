@@ -8,6 +8,7 @@ let login = inject('login')
 const currentPath = ref(window.location.hash)
 let employeeId =  currentPath.value.split("/")[2]
 let employee = ""
+
 if (employeeId != "create") {
     employee = await getEmployee(employeeId, login)
 } else {
@@ -35,7 +36,11 @@ const site = ref(employee.site.id)
 function send() {
     employee.name = name.value
     employee.firstName = firstName.value
-    employee.phone =[phone.value.slice(0,2), " ", phone.value.slice(2,4), " ", phone.value.slice(4,6), " ", phone.value.slice(6,8), " ", phone.value.slice(8,10)].join('')
+    if (phone.value.length == 10) {
+        employee.phone =[phone.value.slice(0,2), " ", phone.value.slice(2,4), " ", phone.value.slice(4,6), " ", phone.value.slice(6,8), " ", phone.value.slice(8,10)].join('')
+    } else {
+        employee.phone = phone.value
+    }
     console.log(employee.phone)
     employee.email = email.value
     employee.service = service.value
